@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use app\Models\User;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -14,5 +14,16 @@ class DashboardController extends Controller
         }elseif(Auth::user()->hasRole('administrator')){
             return view('user.dashboard');
         }
+        
     }
+
+    // function show(){
+    //        if
+    // }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+    
 }

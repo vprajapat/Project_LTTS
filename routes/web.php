@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
-use app\Models\User;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,32 @@ Route::get('/dashboard', function () {
     if(Auth::user()->hasRole('superadministrator')){
       return view('admin.dashboard');
   }elseif(Auth::user()->hasRole('administrator')){
-      return view('user.dashboard');
+      return view('user.index');
   }
 })->middleware(['auth'])->name('dashboard');
  
 // Route::group(['middleware'=>['auth']],function(){
 //   Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 // });
- 
+//  ************************************************ User starts *********************************************
+
+
+
+Route::get('/about', function () {
+  return view('about');
+});
+
+Route::get('/passenger', function () {
+  return view('user.booking.passenger');
+});
+
+
+Route::get('/user/login',[DashboardController::class, 'logout'])-> name('user.logout');
+
+
+
+
+//  ************************************************ User end *********************************************
+
+
 require __DIR__.'/auth.php';

@@ -47,5 +47,4 @@
 </div>
 <!-- end contact form -->
 
-
 @include('body.footer')

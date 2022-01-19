@@ -55,10 +55,10 @@
               <a class="nav-link  text-dark" href="#">Flight Ticket Booking</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  text-dark" href="#">About Us</a>
+              <a class="nav-link  text-dark" href="{{url('/about')}}">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  text-dark" href="#">Contact us</a>
+              <a class="nav-link  text-dark" href="{{url('/contact')}}">Contact us</a>
             </li>
 
           </ul>
