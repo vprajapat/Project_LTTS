@@ -7,8 +7,8 @@
 
     <div class="box ">
        <div class="box-header with-border">
-         <h3 class="box-title">Train Details</h3>
-         <a href="{{route('train.add')}}" class="btn btn-info " style="float : right;"> Add Train</a>
+         <h3 class="box-title">Train Schedule </h3>
+         <a href="{{route('schedule.add')}}" class="btn btn-info " style="float : right;"> Add Train Schedule</a>
        </div>
        <!-- /.box-header -->
        <div class="box-body">
@@ -19,8 +19,9 @@
                        <th width="5%">S.NO.</th>
                        <th>Train Name</th>
                       
-                       <th>Train Code</th>
-                       
+                       <th>Station Name</th>
+                       <th>Depart_date</th>
+                       <th>Depart_Time</th>
                        <th width="20%">Action</th>
                        
                    </tr>
@@ -33,11 +34,13 @@
                         <td>{{$list->train_name}}</td>
                         
                         
-                        <td>{{$list->train_code}}</td>
-                        
+                        <td>{{$list->station_name}}</td>
+                        <td>{{$list->depart_date}}</td>
+                        <td>{{$list->depart_time}}</td>
+                       
                         <td>
-                            <a href="{{route('train.edit',$list->train_id)}}" class="btn btn-info">Edit</a>
-                            <a href="{{route('train.delete',$list->train_id)}}"  class="btn btn-danger" id="delete">Delete</a>
+                            <a href="{{route('schedule.edit',$list->trains_schedule_id)}}" class="btn btn-info">Edit</a>
+                            <a href="{{route('schedule.delete',$list->trains_schedule_id)}}"  class="btn btn-danger" id="delete">Delete</a>
                         </td>
                         
                       

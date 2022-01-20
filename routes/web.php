@@ -4,6 +4,7 @@ use app\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\backend\ScheduleController;
 use app\Http\Controllers\DashboardController;
 use  App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\UserController1;
@@ -83,5 +84,19 @@ Route::prefix('station')->group(function(){
 
 
 });
+
+
+Route::prefix('train/schedule')->group(function(){
+  Route::get('/view', [ScheduleController::class,'index'])->name('schedule.View');
+
+  Route::get('/add', [ScheduleController::class,'create'])->name('schedule.add');
+  Route::post('/store', [ScheduleController::class,'store'])->name('schedule.store');
+  Route::get('/edit/{trains_schedule_id}', [ScheduleController::class,'edit'])->name('schedule.edit');
+  Route::post('/update/{trains_schedule_id}', [ScheduleController::class,'update'])->name('schedule.update');
+  Route::get('/delete/{trains_schedule_id}', [ScheduleController::class,'destroy'])->name('schedule.delete');
+
+
+});
+
  
 require __DIR__.'/auth.php';

@@ -42,32 +42,13 @@
                               {{$message}}
                           @enderror
                         </span>
-                  </div>
+                      </div>
 
-                  <div class="col-md-12">
-                    <div class="form-group">
-                        <h5>Total Seat <span class="text-danger">*</span></h5>
-                        <div class="controls">
-                            <input type="number" name="total_seats" class="form-control" required data-validation-required-message="This field is required" value="{{$editdata->total_seats}}"> </div>
-                    </div>
-                    <span class="text-danger">
-                        @error('total_seats')
-                            {{$message}}
-                        @enderror
-                      </span>
-                </div>
-                    
-                   
-                   
-                   					
-                      
-                       
-                   
                         <div class="text-xs-right">
                             <input type="submit" class="btn btn-rounded btn-info " value="Update">
                         </div>
                
-                </div>
+              </div>
                    
             </form>
 
