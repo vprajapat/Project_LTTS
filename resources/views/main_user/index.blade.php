@@ -1,8 +1,8 @@
 
-@extends('admin.admin_master')
+@extends('main_user.user_master')
 
 
-@section('admin')
+@section('user')
 
 <section class="content">
     

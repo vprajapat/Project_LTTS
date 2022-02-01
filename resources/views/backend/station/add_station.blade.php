@@ -10,7 +10,7 @@
         <div class="col-6">
      <div class="box">
        <div class="box-header with-border">
-         <h4 class="box-title text- center">Add Station</h4>
+         <h4 class="box-title text- center">Add InterStation</h4>
          
        </div>
        <!-- /.box-header -->

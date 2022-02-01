@@ -7,8 +7,8 @@
 
     <div class="box ">
        <div class="box-header with-border">
-         <h3 class="box-title">Train Details</h3>
-         <a href="{{route('train.add')}}" class="btn btn-info " style="float : right;"> Add Train</a>
+         <h3 class="box-title">Train Schedule </h3>
+         <a href="{{route('schedule.add')}}" class="btn btn-info " style="float : right;"> Add Train Schedule</a>
        </div>
        <!-- /.box-header -->
        <div class="box-body">
@@ -19,8 +19,10 @@
                        <th width="5%">S.NO.</th>
                        <th>Train Name</th>
                       
-                       <th>Train Code</th>
-                       
+                       <th> Start Station Name</th>
+                       <th>End Station Name</th>
+                       <th>Start Date And Time</th>
+                       <th>End_Date And Time</th>
                        <th width="20%">Action</th>
                        
                    </tr>
@@ -30,14 +32,17 @@
                    @foreach (  $alldata as $list )
                    <tr>
                         <td> {{$i++}}</td>
-                        <td>{{$list->train_name}}</td>
+                        <td> {{$list['showtrain']['train_name']}}</td>
                         
                         
-                        <td>{{$list->train_code}}</td>
-                        
+                        <td>{{$list['showstartstation']['station_name']}}</td>
+                        <td>{{$list['showendstation']['station_name']}}</td>
+                        <td>{{$list->start_date_time}}</td>
+                        <td>{{$list->stop_date_time}}</td>
+                       
                         <td>
-                            <a href="{{route('train.edit',$list->train_id)}}" class="btn btn-info">Edit</a>
-                            <a href="{{route('train.delete',$list->train_id)}}"  class="btn btn-danger" id="delete">Delete</a>
+                            <a href="{{route('schedule.edit',$list->trains_schedule_id)}}" class="btn btn-info">Edit</a>
+                            <a href="{{route('schedule.delete',$list->trains_schedule_id)}}"  class="btn btn-danger" id="delete">Delete</a>
                         </td>
                         
                       

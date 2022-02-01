@@ -19,15 +19,17 @@ class CreateTrainsScheduleTable extends Migration
             $table->foreign('train_id')->references('train_id')->on('trains');
             $table->unsignedBigInteger('station_id');
             $table->foreign('station_id')->references('station_id')->on('stations');
-            $table->unsignedBigInteger('sub_station_id');
-            $table->foreign('sub_station_id')->references('sub_station_id')->on('sub_stations');
-            $table->date('depart_date');
-            $table->date('return_date');
-            $table->time('depart_time');
-            $table->time('return_time');
+            $table->unsignedBigInteger('end_station_id');
+            $table->foreign('end_station_id')->references('station_id')->on('stations');
+
+            // $table->unsignedBigInteger('inter_station_id');
+            // $table->foreign('inter_station_id')->references('id')->on('intermediate_stations');
             
-            $table->boolean('status');
             
+            $table->dateTime('start_date_time');
+            $table->dateTime('stop_date_time');
+           
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

@@ -4,11 +4,14 @@ use app\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\backend\ScheduleController;
 use app\Http\Controllers\DashboardController;
 use  App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\UserController1;
 use App\Http\Controllers\backend\TrainsController;
 use App\Http\Controllers\backend\StationController;
+use App\Http\Controllers\backend\Intermediate_stationController;
+
 
 
 /*
@@ -33,8 +36,8 @@ Route::get('/dashboard', function () {
     // return view('dashboard');
     if(Auth::user()->hasRole('admin')){
       return view('admin.index');
-  }elseif(Auth::user()->hasRole('user')){
-      return view('user.dashboard');
+  }elseif(Auth::user()->hasRole('user')){    
+      return view('main_user.index');
   }
 })->middleware(['auth'])->name('dashboard');
  
@@ -83,5 +86,33 @@ Route::prefix('station')->group(function(){
 
 
 });
+
+
+Route::prefix('train/schedule')->group(function(){
+  Route::get('/view', [ScheduleController::class,'index'])->name('schedule.View');
+
+  Route::get('/add', [ScheduleController::class,'create'])->name('schedule.add');
+  Route::post('/store', [ScheduleController::class,'store'])->name('schedule.store');
+  Route::get('/edit/{trains_schedule_id}', [ScheduleController::class,'edit'])->name('schedule.edit');
+  Route::post('/update/{trains_schedule_id}', [ScheduleController::class,'update'])->name('schedule.update');
+  Route::get('/delete/{trains_schedule_id}', [ScheduleController::class,'destroy'])->name('schedule.delete');
+
+
+});
+
+
+Route::prefix('train/schedule/interstation')->group(function(){
+  Route::get('/view', [Intermediate_stationController::class,'index'])->name('interstation.View');
+
+  Route::get('/add', [Intermediate_stationController::class,'create'])->name('interstation.add');
+  Route::post('/store', [Intermediate_stationController::class,'store'])->name('interstation.store');
+  Route::get('/edit/{inter_station_id}', [Intermediate_stationController::class,'edit'])->name('interstation.edit');
+  Route::get('/show/{station_id}', [Intermediate_stationController::class,'show'])->name('interstation.show');
+  Route::post('/update/{inter_station_id}', [Intermediate_stationController::class,'update'])->name('interstation.update');
+  Route::get('/delete/{inter_station_id}', [Intermediate_stationController::class,'destroy'])->name('interstation.delete');
+
+
+});
+
  
 require __DIR__.'/auth.php';

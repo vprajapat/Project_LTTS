@@ -24,16 +24,16 @@
 	
 <div class="wrapper">
 
-			@include('admin.body.header')
+			@include('main_user.body.header')
 			<!-- Left side column. contains the logo and sidebar -->
-			@include('admin.body.sidebar')
+			@include('main_user.body.sidebar')
 
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<div class="container-full">
 
 					<!-- Main content -->
-					@yield('admin')
+					@yield('user')
 					<!-- /.content -->
 				</div>
 			</div>

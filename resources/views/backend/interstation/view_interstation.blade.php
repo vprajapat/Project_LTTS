@@ -7,8 +7,8 @@
 
     <div class="box ">
        <div class="box-header with-border">
-         <h3 class="box-title">Train Details</h3>
-         <a href="{{route('train.add')}}" class="btn btn-info " style="float : right;"> Add Train</a>
+         <h3 class="box-title">Station Details</h3>
+         <a href="{{route('interstation.add')}}" class="btn btn-info " style="float : right;"> Add InterStation </a>
        </div>
        <!-- /.box-header -->
        <div class="box-body">
@@ -17,10 +17,9 @@
                <thead>
                    <tr>
                        <th width="5%">S.NO.</th>
-                       <th>Train Name</th>
-                      
-                       <th>Train Code</th>
+                       <th>Station Name</th>
                        
+                      
                        <th width="20%">Action</th>
                        
                    </tr>
@@ -30,15 +29,20 @@
                    @foreach (  $alldata as $list )
                    <tr>
                         <td> {{$i++}}</td>
-                        <td>{{$list->train_name}}</td>
-                        
-                        
-                        <td>{{$list->train_code}}</td>
-                        
+                        <td> {{$list['showstation']['station_name']}}</td>
                         <td>
-                            <a href="{{route('train.edit',$list->train_id)}}" class="btn btn-info">Edit</a>
-                            <a href="{{route('train.delete',$list->train_id)}}"  class="btn btn-danger" id="delete">Delete</a>
-                        </td>
+                          <a href="{{route('interstation.show',$list->station_id)}}" class="btn btn-primary">ShowInter Station</a>
+                         
+                      </td>
+                      
+    
+                                   
+
+                        
+                        
+                  
+                        
+                       
                         
                       
                      </tr>

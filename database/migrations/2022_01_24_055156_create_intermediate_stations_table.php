@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubStationsTable extends Migration
+class CreateIntermediateStationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateSubStationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_stations', function (Blueprint $table) {
-            $table->id('sub_station_id');
-            $table->string('sub_station_name');
-            $table->string('sub_station_code');
+        Schema::create('intermediate_stations', function (Blueprint $table) {
+            $table->id('inter_station_id');
             $table->unsignedBigInteger('station_id');
-            $table->foreign('station_id')->references('station_id')->on('stations'); 
-            $table->boolean('status');
+            $table->foreign('station_id')->references('station_id')->on('stations');
+
+            $table->string('inter_station');
+           
+
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateSubStationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_stations');
+        Schema::dropIfExists('intermediate_stations');
     }
 }

@@ -10,7 +10,7 @@
         <div class="col-6">
      <div class="box">
        <div class="box-header with-border">
-         <h4 class="box-title text- center">Add Station</h4>
+         <h4 class="box-title text- center">Add Train</h4>
          
        </div>
        <!-- /.box-header -->
@@ -18,7 +18,7 @@
          <div class="row">
              
            <div class="col">
-               <form novalidate method="post" action="{{route('station.store')}}">
+               <form novalidate method="post" action="{{route('train.store')}}">
                  @csrf
                 <div class="row">
                     
@@ -26,21 +26,21 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <h5 class="">Station Name <span class="text-danger">*</span></h5>
+                            <h5 class="">Train Name <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="station_name" class="form-control" required data-validation-required-message="This field is required"> </div>
+                                <input type="text" name="train_name" class="form-control" required data-validation-required-message="This field is required"> </div>
                         </div>
                         <span class="text-danger">
-                            @error('station_name')
+                            @error('train_name')
                                 {{$message}}
                             @enderror
                           </span>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <h5>Station Code <span class="text-danger">*</span></h5>
+                            <h5>Train Code <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="station_code" class="form-control" required data-validation-required-message="This field is required"> </div>
+                                <input type="text" name="train_code" class="form-control" required data-validation-required-message="This field is required"> </div>
                         </div>
                         <span class="text-danger">
                             @error('train_code')
@@ -48,18 +48,7 @@
                             @enderror
                           </span>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <h5>Total Seat <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="number" name="total_seats" class="form-control" required data-validation-required-message="This field is required"> </div>
-                        </div>
-                        <span class="text-danger">
-                            @error('total_seats')
-                                {{$message}}
-                            @enderror
-                          </span>
-                    </div>
+                    
                    
 
                   

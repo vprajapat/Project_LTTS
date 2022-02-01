@@ -43,22 +43,22 @@ class TrainsController extends Controller
 
 
         $validated = $request->validate([
-            'train_name' => ['required', 'string', 'max:255'],
-            'train_code' => ['required', 'string', 'max:5'],
-            'total_seats' => ['required', 'integer', 'max:255'],
+            'train_name' => 'required|unique:trains,train_name',
+            'train_code' =>  'required|unique:trains,train_code',
+            
             
             
             
             
         ]);
-
+       
 
         
     
         $train = new Train();
         $train->train_name=$request['train_name'];
         $train->train_code=$request['train_code'];
-        $train->total_seats=$request['total_seats'];
+        
        
         $train->save();
         // $user->attachRole($request['user_type']);
@@ -111,7 +111,7 @@ class TrainsController extends Controller
         $train = Train::find($id);
         $train->train_name=$request['train_name'];
         $train->train_code=$request['train_code'];
-        $train->total_seats=$request['total_seats'];
+       
       
        
         $train->save();

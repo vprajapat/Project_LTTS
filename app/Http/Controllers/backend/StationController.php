@@ -40,11 +40,10 @@ class StationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'station_name' => ['required', 'string', 'max:255'],
-            'station_code' => ['required', 'string', 'max:5'],
             
-            
-            
+            'station_name' => 'required|unique:stations,station_name',
+            'station_code' => 'required|unique:stations,station_code',
+           
             
             
         ]);

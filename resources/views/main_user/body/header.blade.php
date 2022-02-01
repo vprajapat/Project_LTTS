@@ -14,6 +14,10 @@
    
     </ul>
   </div>
+
+  <div class="div">
+    <H1>User Panel</H1>
+  </div>
   
     <div class="navbar-custom-menu r-side">
   <ul class="nav navbar-nav">
