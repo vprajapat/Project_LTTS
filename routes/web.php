@@ -1,18 +1,20 @@
 <?php
 
 use app\Models\User;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\backend\ScheduleController;
+use App\Http\Controllers\StripeController;
 use app\Http\Controllers\DashboardController;
 use  App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\UserController1;
 use App\Http\Controllers\backend\TrainsController;
 use App\Http\Controllers\backend\StationController;
+use App\Http\Controllers\backend\ScheduleController;
+use App\Http\Controllers\usercontroller\indexUserController;
+use App\Http\Controllers\usercontroller\UserTicketController;
 use App\Http\Controllers\backend\Intermediate_stationController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,13 @@ Route::get('/dashboard', function () {
     // return view('dashboard');
     if(Auth::user()->hasRole('admin')){
       return view('admin.index');
-  }elseif(Auth::user()->hasRole('user')){    
-      return view('main_user.index');
+  }elseif(Auth::user()->hasRole('user')){ 
+    
+    $id =Auth::user()->id;
+    $data['user']=User::find($id);
+    $data['book'] = Booking::find($id);
+    $data['amount'] = 10;  
+    return view('main_user.index',$data);
   }
 })->middleware(['auth'])->name('dashboard');
  
@@ -113,6 +120,40 @@ Route::prefix('train/schedule/interstation')->group(function(){
 
 
 });
+
+
+Route::prefix('train/ticket')->group(function(){
+  Route::get('/view', [UserTicketController::class,'index'])->name('ticket.View');
+
+  Route::post('/store', [UserTicketController::class,'store'])->name('ticket.store');
+  Route::get('/showdetais', [UserTicketController::class,'showdetais'])->name('ticket.showdetais');
+  Route::get('/book/{book_id}', [UserTicketController::class,'book'])->name('ticket.book');
+  Route::get('/cancel/{book_id}', [UserTicketController::class,'cancel'])->name('ticket.Cancel');
+  Route::post('/book_pay/{book_id}', [UserTicketController::class,'book_pay'])->name('ticket.pay.store');
+
+
+  Route::get('/booked', [indexUserController::class,'index'])->name('ticket.booked');
+
+  // Route::get('/add', [Intermediate_stationController::class,'create'])->name('interstation.add');
+  // Route::get('/edit/{inter_station_id}', [Intermediate_stationController::class,'edit'])->name('interstation.edit');
+  // Route::get('/show/{station_id}', [Intermediate_stationController::class,'show'])->name('interstation.show');
+  // Route::post('/update/{inter_station_id}', [Intermediate_stationController::class,'update'])->name('interstation.update');
+  // Route::get('/delete/{inter_station_id}', [Intermediate_stationController::class,'destroy'])->name('interstation.delete');
+
+
+});
+
+//payment routes
+
+
+Route::get('checkout/{book_id}', [StripeController::class, 'checkout'])->name('checkout');
+Route::post('checkout', [StripeController::class, 'afterpayment'])->name('checkout.credit-card');
+
+
+
+
+
+
 
  
 require __DIR__.'/auth.php';

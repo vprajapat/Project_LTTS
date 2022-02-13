@@ -14,13 +14,16 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-        $table->id('book_id');
-        $table->unsignedBigInteger('train_id'); 
-        $table->foreign('train_id')->references('train_id')->on('trains'); 
-        $table->unsignedBigInteger('cust_id'); 
-        $table->foreign('cust_id')->references('cust_id')->on('customers'); 
-        $table->integer('seat_amount');
-        $table->time('book_date');
+        $table->id('book_id'); 
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->string('from');
+        $table->string('destination');
+        $table->string('pass_name');
+        $table->integer('pass_Phone');
+        $table->string('pass_email');
+        $table->integer('total_pass');
+        $table->date('book_date');
 
             $table->timestamps();
         });

@@ -62,7 +62,10 @@
 
     
      <!-- /.box -->          
-   </div>
+  </div>
+  
 
 
-@endsection
+
+
+   @endsection

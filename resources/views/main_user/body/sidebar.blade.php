@@ -26,14 +26,14 @@
       <li class="treeview ">
         <a href="#">
           <i data-feather="grid"></i>
-          <span>Manage User</span>
+          <span>Ticket</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{route('User.View')}}"><i class="ti-more"></i>View user</a></li>
-          <li><a href="{{route('User.add')}}"><i class="ti-more"></i>Add User</a></li>
+          <li><a href="{{route('ticket.View')}}"><i class="ti-more"></i>Book Ticket</a></li>
+          <li><a href="{{route('ticket.booked')}}"><i class="ti-more"></i>Booked Ticket</a></li>
           
         </ul>
         

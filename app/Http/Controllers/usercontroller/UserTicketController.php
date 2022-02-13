@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\usercontroller;
 
-use App\Http\Controllers\Controller;
-use App\Models\Station;
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserTicketController extends Controller
 {
@@ -15,10 +18,13 @@ class UserTicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {       
+        $id =Auth::user()->id;
+        $data['amount'] = 10;
         $data['station']=Station::all();
-        $data['station']=User::all();
-        return view('')
+    
+        $data['user']=User::find($id);
+        return view('main_user.ticket.ticket_book',$data);
     }
 
     /**
@@ -39,7 +45,58 @@ class UserTicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $ticketbook = new Booking();
+      $ticketbook->from=$request['fromstation'];
+      $ticketbook->destination=$request['destination'];
+      $ticketbook->user_id=$request['user_id'];
+      $ticketbook->pass_name=$request['pass_name'];
+      $ticketbook->pass_Phone=$request['pass_Phone'];
+      $ticketbook->pass_email=$request['pass_email'];
+      $ticketbook->total_pass=$request['total_pass'];
+      $ticketbook->book_date=$request['book_date'];
+      $ticketbook->save();
+
+      $notification = array(
+        'message' => 'Information  Inserted Successfully',
+        'alert-type' => 'success'
+
+
+            );
+   
+   
+    return redirect()->route('ticket.showdetais')->with($notification);
+    }
+
+
+
+    public function showdetais( )
+    {
+        $data['amount'] = 10;
+        // $id=Booking::latest('book_id')->first();
+        $id=DB::table('bookings')->max('book_id');
+        
+        $data['booking'] =Booking::find($id);
+        // $data['booking'] =Booking::all();
+       
+
+        
+        
+        return view('main_user.ticket.ticket_pay',$data);
+    }
+
+
+    public function cancel($id)
+    {
+        $data =Booking::find($id);
+        $data->delete();
+        $notification = array(
+            'message' => 'Your Ticket cancelled Successfully',
+            'alert-type' => 'info'
+    
+    
+        );
+        
+        return redirect()->route('ticket.View')->with($notification);
     }
 
     /**

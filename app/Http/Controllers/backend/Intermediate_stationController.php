@@ -46,6 +46,8 @@ class Intermediate_stationController extends Controller
         $intermid = new Intermediate_station();
         $intermid->station_id=$request['station_id'];
         $intermid->inter_station=$request['inter_station'];
+        $intermid->book_date=$request['book_date'];
+        $intermid->pass_Phone=$request['pass_Phone'];
         
         
         
@@ -62,6 +64,7 @@ class Intermediate_stationController extends Controller
        
        
         return redirect()->route('interstation.add')->with($notification);
+        
     }
 
     /**
