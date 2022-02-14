@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use app\Models\User;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use app\Models\User;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,9 @@ class DashboardController extends Controller
         if(Auth::user()->hasRole('superadministrator')){
             return view('admin.dashboard');
         }elseif(Auth::user()->hasRole('administrator')){
-            return view('user.dashboard');
+            $data['book'] = Booking::all();
+            $data['amount'] = 10;
+            return view('user.dashboard',$data);
         }
     }
 }
