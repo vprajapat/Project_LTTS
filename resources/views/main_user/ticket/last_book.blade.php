@@ -35,6 +35,7 @@
                             <th>Total Passenger</th>
                             <th>Date and Time</th>
                             <th>Total Amount</th>
+                             <th>Status</th>
                             
                            
                           
@@ -61,6 +62,7 @@
                              <td > <p class=" btn btn-primary m-1">{{$booking->total_pass}}</p></td>
                              <td > <p class=" btn btn-primary m-1">{{$booking->created_at}}</p></td>
                              <td><p class=" btn btn-primary m-1">{{$booking->total_pass*$amount}} .Rs</p> </td>
+                             <td><p class=" btn btn-success m-1">Booked</p> </td>
                             
                             
                              
